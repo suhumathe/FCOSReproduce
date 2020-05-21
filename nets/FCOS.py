@@ -48,12 +48,7 @@ class FCOS(nn.Module):
         lables, reg_targets, centerness_targets = self.target(locations, gt_boxes)
 
         loss_box_cls, loss_box_reg, loss_centerness = self.loss(logits, bbox_reg, centerness, lables, reg_targets, centerness_targets)
-        losses = {
-            "loss_cls": loss_box_cls,
-            "loss_reg": loss_box_reg,
-            "loss_centerness": loss_centerness
-        }
-        return losses
+        return loss_box_cls, loss_box_reg, loss_centerness
 
     def _forward_test(self, logits, bbox_reg, centerness, im_info):
         boxes = self.postProcess(logits, bbox_reg, centerness, im_info)

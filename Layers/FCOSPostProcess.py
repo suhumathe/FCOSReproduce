@@ -85,7 +85,7 @@ class FCOSPostProcess(nn.Module):
             ], dim=1)
 
             h, w = im_info[i, 0], im_info[i, 1]
-            boxlist = torch.cat([detections, per_class[:, None], per_box_cls[:, :, None]])
+            boxlist = torch.cat([detections, per_class[:, None], per_box_cls[:, None]])
             boxlist = clip_to_image(boxlist, (int(w), int(h)))
             boxlist = remove_small_boxes(boxlist, self.min_size)
             results.append(boxlist)

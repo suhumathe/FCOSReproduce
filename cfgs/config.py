@@ -18,6 +18,9 @@ cfg = __C
 
 # Place outputs under an experiments directory
 __C.EXP_DIR = 'default'
+__C.RNG_SEED = 3
+__C.USE_GPU_NMS = True
+__C.CUDA = False
 
 # Root directory of the project
 __C.ROOT_DIR = osp.abspath(osp.join(osp.dirname(__file__), '..'))
@@ -71,11 +74,16 @@ __C.SOLVER.WEIGHT_DECAY = 0.0005
 __C.SOLVER.BIAS_LR_FACTOR = 2
 __C.SOLVER.WEIGHT_DECAY_BIAS = 0
 __C.SOLVER.MOMENTUM = 0.9
-__C.SOLVER.STEPS = (30000,)
+__C.SOLVER.STEPS = [16, 22]
 __C.SOLVER.GAMMA = 0.1
 __C.SOLVER.WARMUP_FACTOR = 1.0 / 3
 __C.SOLVER.WARMUP_ITERS = 500
 __C.SOLVER.WARMUP_METHOD = "linear"
+__C.SOLVER.IMS_PER_BATCH = 16
+
+#---test options---
+__C.TEST = edict()
+__C.TEST.IMS_PER_BATCH = 8
 
 import pdb
 def get_output_dir(imdb, weights_filename):
